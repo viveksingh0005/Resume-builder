@@ -1,23 +1,4 @@
-// const express = require('express');
-// const cors = require('cors');
 
-
-// const app = express();
-// app.use(cors({origin:"http://localhost:5173",
-//     credentials:true
-// }))
-// app.use(express.json())
-// const dotenv =require('dotenv');
-
-
-// const resumeRouter = require('./routes/resume.routes');
-// app.use("api/resume",resumeRouter)
-
-
-// module.exports   = app
-// src/app.js     (recommended location if using src/ folder)
-
-require('dotenv').config();   // ← MUST be at the VERY TOP
 
 const express = require('express');
 const cors = require('cors');

@@ -1,42 +1,72 @@
 // controllers/resume.controller.js
+const mongoose = require('mongoose');
 const Resume = require('../models/resume');
 const { apiResponse } = require('../utils/apiResponse'); // optional – if you have it
 // If you don't have apiResponse util yet, just use plain res.json()
+
+
 
 /**
  * Create a new resume
  * POST /api/resumes
  */
 const createResume = async (req, res) => {
+  console.log("POST /api/resumes received");
+  console.log("Body:", JSON.stringify(req.body, null, 2));
+
   try {
-    const { title, blocks } = req.body;
+    const { userId, title, blocks } = req.body;
 
-    // Optional: If you add auth later → req.user.id
-    // For now: either from body or leave undefined (guest/anonymous resume)
-    const userId = req.body.userId || null;
+    if (!userId) {
+      return res.status(400).json({
+        success: false,
+        message: "userId is required (must be valid ObjectId)",
+      });
+    }
 
-    const resume = new Resume({
-      userId,
-      title: title || 'Untitled Resume',
+    // Quick check if it looks like ObjectId
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({
+        success: false,
+        message: "userId must be a valid 24-character hex string",
+      });
+    }
+
+    const newResume = new Resume({
+      userId: new mongoose.Types.ObjectId(userId), // force ObjectId type
+      title: title || "Untitled Resume",
       blocks: blocks || [],
     });
 
-    await resume.save();
+    console.log("Document before save:", newResume.toObject());
 
-    res.status(201).json({
+    await newResume.save();
+
+    console.log("Saved resume ID:", newResume._id.toString());
+
+    return res.status(201).json({
       success: true,
-      data: resume,
-      message: 'Resume created successfully',
+      message: "Resume created",
+      data: newResume,
     });
-  } catch (error) {
-    res.status(500).json({
+  } catch (err) {
+    console.error("Create resume error:", err);
+
+    if (err.name === "ValidationError") {
+      return res.status(400).json({
+        success: false,
+        message: "Validation failed",
+        errors: err.errors,
+      });
+    }
+
+    return res.status(500).json({
       success: false,
-      message: 'Failed to create resume',
-      error: error.message,
+      message: "Server error while creating resume",
+      error: err.message,
     });
   }
 };
-
 /**
  * Get all resumes (optionally filtered by userId)
  * GET /api/resumes
