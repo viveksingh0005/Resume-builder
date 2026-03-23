@@ -1,7 +1,7 @@
-import React from 'react'
+import ATSResumeEditor from "./ATSResumeEditor";
 
-export const App = () => {
-  return (
-    <div>App</div>
-  )
+function App() {
+  return <ATSResumeEditor />;
 }
+
+export default App;
