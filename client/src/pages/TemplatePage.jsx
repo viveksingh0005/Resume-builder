@@ -64,7 +64,7 @@ function TemplateCard({ tpl, navigate }) {
 
       {/* Thumbnail */}
       <div style={{
-        height: 180,
+        height: 320,
         background: "#fff",
         borderRadius: 6,
         marginBottom: 12,
