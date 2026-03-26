@@ -2,9 +2,9 @@ import { FONTS } from "../utils/constants"; // move your FONTS/SIZES out to cons
 
 const uid = () => Math.random().toString(36).slice(2, 8);
 
-export const classic = {
-  id: "classic",
-  name: "Classic",
+export const goku = {
+  id: "goku",
+  name: "goku",
   thumbnail: "👔",
   font: FONTS[0],                          // Calibri
   sizes: { name: 24, heading: 12, body: 11 },

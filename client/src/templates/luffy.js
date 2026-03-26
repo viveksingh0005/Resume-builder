@@ -2,15 +2,15 @@ import { FONTS } from "../utils/constants"; // move your FONTS/SIZES out to cons
 
 const uid = () => Math.random().toString(36).slice(2, 8);
 
-export const classic = {
-  id: "classic",
-  name: "Classic",
+export const luffy = {
+  id: " luffy",
+  name:" luffy",
   thumbnail: "👔",
   font: FONTS[0],                          // Calibri
   sizes: { name: 24, heading: 12, body: 11 },
   accentColor: "#1a365d",
   blocks: [
-    { id: uid(), type: "name",       text: "Your Full Vivek" },
+    { id: uid(), type: "name",       text: "Your Full Alok" },
     { id: uid(), type: "contact",    text: "email@example.com  |  Phone  |  City" },
     { id: uid(), type: "divider",    text: "" },
     { id: uid(), type: "heading",    text: "Professional Summary" },

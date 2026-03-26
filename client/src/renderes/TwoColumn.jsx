@@ -1,6 +1,6 @@
 // src/components/renderers/TwoColumn.jsx
-import Block from "../Block";
 
+import Block from "../components/Block";
 function Column({ blocks, selId, font, sizes, accentColor,
                   onSelect, onChange, onDelete, onMoveUp, onMoveDown }) {
   return (

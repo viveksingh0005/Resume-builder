@@ -1,5 +1,5 @@
 // src/templates/blocks.js
-import { uid } from "../constants";
+import { uid } from "../utils/constants";
 
 export const nameBlock    = (text = "Your Full Name")                        => ({ id: uid(), type: "name",       text });
 export const contactBlock = (text = "email@example.com  |  Phone  |  City") => ({ id: uid(), type: "contact",    text });

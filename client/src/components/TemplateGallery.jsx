@@ -1,5 +1,5 @@
 // src/components/TemplateGallery.jsx
-import { TEMPLATES } from "./templates";
+import { TEMPLATES } from "../templates";
 
 export default function TemplateGallery({ currentId, onSelect, onClose }) {
   return (
